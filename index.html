@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Painel de Afiliado</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: sans-serif; background-color: var(--tg-theme-bg-color); color: var(--tg-theme-text-color); padding: 20px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc; }
+        button { width: 100%; padding: 12px; background-color: #248bcf; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .card { background: var(--tg-theme-secondary-bg-color); padding: 15px; border-radius: 12px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h3>Minhas IDs</h3>
+        <input type="text" id="shopeeId" placeholder="ID Shopee (ex: usuario123)">
+        <input type="text" id="amazonId" placeholder="ID Amazon (ex: tag-20)">
+        <button onclick="saveConfig()">Salvar Configurações</button>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Abre o Mini App em tela cheia
+
+        function saveConfig() {
+            const data = {
+                shopee: document.getElementById('shopeeId').value,
+                amazon: document.getElementById('amazonId').value
+            };
+            tg.sendData(JSON.stringify(data)); // Envia os IDs de volta para o Bot
+            tg.close(); // Fecha o Mini App
+        }
+    </script>
+</body>
+</html>
